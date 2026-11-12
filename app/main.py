@@ -1,4 +1,3 @@
-
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
@@ -22,16 +21,12 @@ app = FastAPI(
     title="Sentiment Analysis WebApp",
     description="Sentiment prediction using TF-IDF and Word2Vec",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 
 # Load static files
-app.mount(
-    "/static",
-    StaticFiles(directory="app/static"),
-    name="static"
-)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Configure HTML templates
 templates = Jinja2Templates(directory="app/templates")
@@ -44,7 +39,5 @@ app.include_router(router)
 @app.get("/")
 def home(request: Request):
     return templates.TemplateResponse(
-        request=request,
-        name="index.html",
-        context={"request": request}
+        request=request, name="index.html", context={"request": request}
     )

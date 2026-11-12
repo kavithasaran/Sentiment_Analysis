@@ -8,3 +8,6 @@ joblib
 numpy
 pytest
 httpx
+black
+isort
+flake8

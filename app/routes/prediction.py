@@ -1,13 +1,7 @@
-
 from fastapi import APIRouter, HTTPException, Request
 
-from app.schemas.prediction_schema import (
-    PredictionRequest,
-    PredictionResponse
-)
-
+from app.schemas.prediction_schema import PredictionRequest, PredictionResponse
 from app.services.prediction_service import predict_sentiment
-
 
 router = APIRouter()
 
@@ -20,20 +14,15 @@ def predict(request: Request, data: PredictionRequest):
 
     try:
         sentiment = predict_sentiment(
-            combined_review,
-            data.model_name,
-            request.app.state.models
+            combined_review, data.model_name, request.app.state.models
         )
 
         return PredictionResponse(
             heading=data.heading,
             review=data.review,
             selected_model=data.model_name,
-            sentiment=sentiment
+            sentiment=sentiment,
         )
 
     except ValueError as error:
-        raise HTTPException(
-            status_code=400,
-            detail=str(error)
-        )
+        raise HTTPException(status_code=400, detail=str(error))

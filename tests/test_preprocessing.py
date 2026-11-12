@@ -1,7 +1,4 @@
-from app.services.preprocessing import (
-    clean_review_text,
-    tokenize_review
-)
+from app.services.preprocessing import clean_review_text, tokenize_review
 
 
 def test_clean_review_text():

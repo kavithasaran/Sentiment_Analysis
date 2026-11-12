@@ -18,8 +18,8 @@ def test_prediction_invalid_model():
             json={
                 "heading": "Great product",
                 "review": "I really liked this product.",
-                "model_name": "invalid_model"
-            }
+                "model_name": "invalid_model",
+            },
         )
 
         assert response.status_code == 400
